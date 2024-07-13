@@ -1,0 +1,59 @@
+.navbar {
+  width: 226px;
+  height: calc(100% -48px);
+  background-color: rgb(16, 10, 68);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.menu {
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid rgb(88, 88, 88);
+  margin-bottom: 5px;
+}
+.menu-item {
+  display: flex;
+  height: 44px;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  border-radius: 4px;
+}
+.menu-item .menu-icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 16px;
+  margin-right: 16px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.menu-item .icon-home {
+  background-image: url(/assets/icon/dashboard.png);
+}
+.menu-item .icon-report {
+  background-image: url(/assets/icon/report.png);
+}
+.menu-item .icon-employee {
+  background-image: url(/assets/icon/dic-employee.png);
+}
+.menu-item .icon-setting {
+  background-image: url(/assets/icon/setting.png);
+}
+.menu-item .menu-text {
+  color: white;
+}
+
+.menu-item:hover {
+  background-color: #c5c1fa;
+}
+
+.collapse .collapse-text {
+  height: 24px;
+  font-size: 16px;
+  background-color: #ffffff00;
+  color: white;
+  border: none;
+}

@@ -1,0 +1,32 @@
+.m-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: unset;
+  border: unset;
+}
+
+.m-table tr,
+td,
+th {
+  border: 1px solid #bbb;
+  height: 48px;
+  padding-left: 16px;
+  padding-right: 10px;
+  text-align: left;
+}
+
+.m-table thead {
+  background-color: #dfdfdf;
+}
+
+.m-table .text-align-center {
+  text-align: center;
+}
+
+.m-table .text-align-left {
+  text-align: left;
+}
+
+.m-table tbody tr:hover {
+  background-color: rgb(197, 250, 197);
+}

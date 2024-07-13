@@ -1,0 +1,54 @@
+.toast-block {
+  position: fixed;
+  bottom: 0px;
+  right: 0;
+  width: 300px;
+}
+.toast-block .toast {
+  height: 48px;
+  display: flex;
+  background-position: center;
+  background-color: white;
+  align-items: center;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.toast-block .toast-text {
+  width: 100%;
+}
+.toast-block .toast-icon {
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.toast-block .icon-question {
+  background-image: url(/assets/icon/question-48.png);
+}
+.toast-block .icon-error {
+  background-image: url(/assets/icon/error-48.png);
+}
+.toast-block .icon-warning {
+  background-image: url(/assets/icon/warning-48.png);
+}
+.toast-block .icon-info {
+  background-image: url(/assets/icon/info-48.png);
+}
+.toast-block .icon-success {
+  background-image: url(/assets/icon/success-48.png);
+}
+.toast-block .toast-buttton {
+  background-image: url(/assets/icon/close-48.png);
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-left: 8px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0);
+}

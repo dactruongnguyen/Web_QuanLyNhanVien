@@ -1,0 +1,16 @@
+.m-input {
+  height: 40px;
+  color: #000;
+  border-width: 1px;
+  border-radius: 4px;
+  border-color: #bbb;
+  padding: 0 16px;
+  border-style: solid;
+  outline: unset;
+}
+.m-input:focus {
+  border-color: #019160;
+}
+.m-input::placeholder {
+  font-size: 11px;
+}

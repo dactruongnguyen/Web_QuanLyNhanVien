@@ -1,0 +1,33 @@
+@import url(/css/compoments/button.css);
+@import url(/css/compoments/input.css);
+@import url(/css/compoments/icon.css);
+@import url(/css/compoments/table.css);
+@import url(/css/compoments/paging.css);
+@import url(/css/compoments/select.css);
+@import url(/css/compoments/dialog.css);
+@import url(/css/layout/header.css);
+@import url(/css/layout/navbar.css);
+@import url(/css/layout/content.css);
+@import url(/css/compoments/toast.css);
+body {
+  font-family: GoogleSands;
+  margin: 0px;
+}
+
+.main {
+  width: 100%;
+  height: calc(100vh - 48px);
+  display: flex;
+}
+@font-face {
+  font-family: GoogleSands_Bold;
+  src: url(/assets/font/GoogleSans-Bold.otf);
+}
+@font-face {
+  font-family: GoogleSands;
+  src: url(/assets/font/GoogleSans-Regular.otf);
+}
+@font-face {
+  font-family: GoogleSands_Italic;
+  src: url(/assets/font/GoogleSans-Italic.otf);
+}

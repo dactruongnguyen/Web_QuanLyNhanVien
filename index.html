@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <div class="m-row">
+      <label for="">1.Button</label>
+      <div class="m-row">
+        <button class="m-btn">Đồng ý</button>
+      </div>
+    </div>
+
+    <div class="m-row">
+      <label for="">1.Button</label>
+      <div class="m-row">
+        <button class="m-btn-icon m-btn m-btn-icon-add">Thêm mới</button>
+      </div>
+    </div>
+
+    <div class="m-row">
+      <label for="">2.Input</label>
+      <div class="m-row">
+        <input
+          type="text"
+          class="m-input m-icon-search m-icon m-icon-16"
+          placeholder="Tìm kiếm theo mã, họ tên"
+          style="width: 170px"
+        />
+      </div>
+    </div>
+
+    <div class="m-row">
+      <label for="">Table</label>
+      <div class="m-row">
+        <table class="m-table">
+          <thead>
+            <tr>
+              <th style="width: 10px">STT</th>
+              <th style="width: 100px">Mã nhân viên</th>
+              <th>Họ và tên</th>
+              <th style="width: 80px">Giới tính</th>
+              <th style="width: 40px">Ngày sinh</th>
+              <th>Địa chỉ Email</th>
+              <th>Địa chỉ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>001</td>
+              <td>Nguyễn Đắc Trường</td>
+              <td>Nam</td>
+              <td class="text-align-center">16/10/2003</td>
+              <td>abc@gmail.com</td>
+              <td>HaiDuong</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>001</td>
+              <td>Nguyễn Đắc Trường</td>
+              <td>Nam</td>
+              <td class="text-align-center">16/10/2003</td>
+              <td>abc@gmail.com</td>
+              <td>HaiDuong</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>001</td>
+              <td>Nguyễn Đắc Trường</td>
+              <td>Nam</td>
+              <td class="text-align-center">16/10/2003</td>
+              <td>abc@gmail.com</td>
+              <td>HaiDuong</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="m-paging">
+          <div class="m-paging-left">Tổng: 100</div>
+          <div class="m-paging-center"></div>
+          <div class="m-paging-right">
+            <select name="" id="m-select">
+              <option value="10">Số bản ghi trang 10</option>
+              <option value="20">Số bản ghi trang 20</option>
+              <option value="30">Số bản ghi trang 30</option>
+            </select>
+            <button class="m-btn-prev"></button>
+            <button class="m-btn-next"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-from">
+      <div class="id">
+        <label for="mnv">Mã nhân viên</label>
+        <input type="text" name="Manhanvien" id="mnv" />
+      </div>
+      <div class="name">
+        <label for="hoten">Họ và tên</label>
+        <input type="text" name="Hovaten" id="hoten" />
+      </div>
+      <div class="date">
+        <label for="ngaysinh">Ngày sinh</label>
+        <input type="date" name="ngaysinh" id="ngaysinh" />
+      </div>
+      <div class="sex">
+        <label>Giới tính</label>
+        <div class="sex-value">
+          <div>
+            <input type="radio" name="gioitinh" id="Nam" />
+            <label for="Nam">Nam</label>
+          </div>
+          <div>
+            <input type="radio" name="gioitinh" id="Nu" />
+            <label for="Nu">Nữ</label>
+          </div>
+          <div>
+            <input type="radio" name="gioitinh" id="Khac" />
+            <label for="Khac">Khác</label>
+          </div>
+        </div>
+      </div>
+      <div class="location">
+        <label for="vitri">Vị trí</label>
+        <input type="text" name="vitri" id="vitri" />
+      </div>
+      <div class="cmtnd">
+        <label for="cmt">Số CMTND</label>
+        <input type="text" name="cmt" id="cmt" />
+      </div>
+      <div class="ngaycap">
+        <label for="ngaycap">Ngày cấp</label>
+        <input type="date" name="ngaycap" id="ngaycap" />
+      </div>
+      <div class="phongban">
+        <label for="phongban">Phòng ban</label>
+        <input type="text" name="phongban" id="phongban" />
+      </div>
+      <div class="noicap">
+        <label for="noicap">Nơi cấp</label>
+        <input type="text" name="noicap" id="noicap" />
+      </div>
+      <div class="diachi">
+        <label for="diachi">Địa chỉ</label>
+        <input type="text" name="diachi" id="diachi" />
+      </div>
+      <div class="didong">
+        <label for="didong">ĐT di động</label>
+        <input type="text" name="didong" id="didong" />
+      </div>
+      <div class="dtcodinh">
+        <label for="dtcodinh">ĐT Cố định</label>
+        <input type="text" name="dtcodinh" id="dtcodinh" />
+      </div>
+      <div class="email">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" />
+      </div>
+      <div class="tknganghang">
+        <label for="tknganhang">Tài khoản ngân hàng</label>
+        <input type="text" name="tknganghang" id="tknganghang" />
+      </div>
+      <div class="tennganhang">
+        <label for="tennganhang">Tên ngân hàng</label>
+        <input type="text" name="tennganhang" id="tennganhang" />
+      </div>
+      <div class="chinhanh">
+        <label for="chinhanh">Chi nhánh</label>
+        <input type="text" name="chinhanh" id="chinhanh" />
+      </div>
+    </div>
+    <div class="button-click">
+      <button class="huy">Hủy</button>
+      <button class="cat">Cất</button>
+    </div>
+    <script>
+      document
+        .getElementById("btnshowDialog")
+        .addEventListener("click", function () {
+          var dialog = document.getElementById("dlgDialog");
+          dialog.style.display = "block";
+        });
+    </script>
+  </body>
+</html>

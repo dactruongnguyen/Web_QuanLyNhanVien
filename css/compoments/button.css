@@ -1,0 +1,96 @@
+.m-btn {
+  height: 40px;
+  padding: 0 24px;
+  border-radius: 4px;
+  text-align: center;
+  color: white;
+  border: none;
+  background-color: #019650;
+}
+.m-btn:hover {
+  background-color: #25ce9b;
+}
+.m-btn:active {
+  background-color: #029262;
+}
+.m-btn-icon {
+  background-position: 16px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  padding-left: 40px;
+  padding-right: 16px;
+}
+
+.m-btn-icon-add {
+  background-image: url(/assets/icon/add.png);
+}
+
+.m-btn-prev {
+  background-color: white;
+  background-image: url(/assets/icon/btn-prev-page.svg);
+  background-repeat: no-repeat;
+  background-size: 16px;
+  border: none;
+}
+.m-btn-next {
+  background-color: white;
+  background-image: url(/assets/icon/btn-next-page.svg);
+  background-repeat: no-repeat;
+  background-size: 16px;
+  border: none;
+}
+.m-dialog .m-dialog-content .row-1-close {
+  width: 24px;
+  height: 24px;
+  background-image: url(/assets/icon/close-48.png);
+  background-position: center;
+  background-size: contain;
+  border: none;
+}
+.row-8 .button-click {
+  margin-left: 65%;
+}
+.row-8 .button-click button {
+  width: 100px;
+  height: 36px;
+  margin: 16px;
+}
+
+.row-8 .button-click .huy {
+  background-color: white;
+  border: 1px solid rgb(231, 231, 231);
+  border-radius: 4px;
+}
+.row-8 .button-click .huy:hover {
+  background-color: rgb(155, 155, 155);
+}
+
+.button-container {
+  display: none;
+  position: absolute;
+  right: 16px;
+}
+
+.button-container .button-table {
+  width: 16px;
+  height: 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  background-size: contain;
+  margin: 8px;
+  background-color: rgb(197, 250, 197);
+}
+tr:hover .button-container {
+  display: inline-block;
+}
+
+.button-container .button-edit-icon {
+  background-image: url(/assets/icon/edit-icon.png);
+}
+.button-container .button-copy-icon {
+  background-image: url(/assets/icon/copy-icon.png);
+}
+.button-container .button-close-icon {
+  background-image: url(/assets/icon/close-48.png);
+}

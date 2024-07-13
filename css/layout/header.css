@@ -1,0 +1,72 @@
+.header {
+  display: flex;
+  height: 48px;
+  width: 100%;
+}
+
+.header-left {
+  display: flex;
+  width: 226px;
+  height: 100%;
+  align-items: center;
+  padding-left: 16px;
+  box-sizing: border-box;
+}
+
+.header-left .sibar {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  background-image: url(/assets/img/toggle.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 24px;
+}
+.header .header-left .logo {
+  width: 100%;
+  height: 32px;
+  background-image: url(/assets/cukcuk-logo.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.header-right {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.header .header-right .header-left-location {
+  width: 100%;
+}
+.header .header-right .header-left-location select {
+  background-color: white;
+  width: 140px;
+  border: none;
+}
+
+.header .header-right .header-left-info {
+  display: flex;
+  align-items: center;
+  right: 16px;
+}
+.header .header-right .header-left-info .avatar {
+  width: 32px;
+  height: 32px;
+  background-image: url(/assets/icon/avatar-default.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 8px;
+}
+.header .header-right .header-left-info .fullname {
+  width: 150px;
+}
+.header .header-right .header-left-info .menu-info {
+  margin-right: 16px;
+  width: 24px;
+  height: 24px;
+  background-image: url(/assets/icon/option.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}

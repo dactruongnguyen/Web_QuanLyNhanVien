@@ -1,0 +1,112 @@
+.m-dialog {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  background-color: rgba(0, 0, 0, 0.377);
+  display: none;
+}
+
+.m-dialog .m-dialog-content {
+  position: absolute;
+  width: 780px;
+  height: 550px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  background-color: white;
+  border-radius: 4px;
+  margin: 8px;
+}
+
+.m-dialog .row {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+.m-dialog .row-1 div {
+  width: 100%;
+}
+
+.m-dialog .m-dialog-content .row div {
+  display: flex;
+  flex-direction: column;
+}
+.m-dialog .m-dialog-content .row input {
+  height: 32px;
+  margin: 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(221, 221, 221, 0.911);
+}
+.m-dialog .m-dialog-content .row-2 .sex .sex-value {
+  display: flex;
+  flex-direction: row;
+}
+.m-dialog .m-dialog-content .row-2 .sex .sex-value div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.m-dialog .m-dialog-content .row-8 .button-click {
+  display: flex;
+  flex-direction: row;
+}
+
+.m-dialog .m-dialog-content .row-8 {
+  background-color: rgb(223, 223, 223);
+}
+
+.dialog-notice-container {
+  position: absolute;
+  width: 420px;
+  height: 190px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 4px;
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.dialog-noitice-header {
+  display: flex;
+  align-items: center;
+}
+.dialog-notice-tile {
+  width: 100%;
+  margin: 16px;
+}
+.dialog-notice-close {
+  background-image: url(/assets/icon/close-48.png);
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  margin-right: 16px;
+}
+
+.dialog-notice-content {
+  display: flex;
+  align-items: center;
+}
+.dialog-notice-content .content-icon {
+  background-image: url(/assets/icon/question-48.png);
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  margin: 16px;
+}
+.dialog-noitice-btn {
+  text-align: right;
+}
+.dialog-noitice-btn .btn-yes {
+  margin-right: 16px;
+  margin-top: 16px;
+}
