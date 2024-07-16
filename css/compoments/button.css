@@ -6,6 +6,10 @@
   color: white;
   border: none;
   background-color: #019650;
+  cursor: pointer;
+}
+.m-btn-cursor {
+  cursor: pointer;
 }
 .m-btn:hover {
   background-color: #25ce9b;
@@ -23,6 +27,7 @@
 
 .m-btn-icon-add {
   background-image: url(/assets/icon/add.png);
+  cursor: pointer;
 }
 
 .m-btn-prev {
@@ -60,6 +65,7 @@
   background-color: white;
   border: 1px solid rgb(231, 231, 231);
   border-radius: 4px;
+  cursor: pointer;
 }
 .row-8 .button-click .huy:hover {
   background-color: rgb(155, 155, 155);

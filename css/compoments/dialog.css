@@ -7,7 +7,15 @@
   background-color: rgba(0, 0, 0, 0.377);
   display: none;
 }
-
+.m-dialog-notice {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  background-color: rgba(0, 0, 0, 0.377);
+  display: none;
+}
 .m-dialog .m-dialog-content {
   position: absolute;
   width: 780px;
@@ -39,6 +47,9 @@
   margin: 8px;
   border-radius: 4px;
   border: 1px solid rgba(221, 221, 221, 0.911);
+}
+.m-dialog .m-dialog-content .row label {
+  margin-left: 8px;
 }
 .m-dialog .m-dialog-content .row-2 .sex .sex-value {
   display: flex;

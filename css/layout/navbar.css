@@ -3,14 +3,15 @@
   height: calc(100% -48px);
   background-color: rgb(16, 10, 68);
   padding: 16px;
-  display: flex;
   flex-direction: column;
+  transition: width 0.3s;
 }
 .menu {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 36px);
   border-bottom: 1px solid rgb(88, 88, 88);
   margin-bottom: 5px;
+  display: block;
 }
 .menu-item {
   display: flex;
@@ -28,6 +29,7 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  filter: hue-rotate(100deg) brightness(3);
 }
 
 .menu-item .icon-home {
@@ -56,4 +58,8 @@
   background-color: #ffffff00;
   color: white;
   border: none;
+}
+.collapse {
+  position: absolute;
+  bottom: 16px;
 }

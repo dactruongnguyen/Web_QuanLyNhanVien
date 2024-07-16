@@ -29,27 +29,29 @@
       </div>
     </div>
     <div class="main">
-      <div class="navbar">
-        <div class="menu">
+      <div class="navbar" id="navbar-id">
+        <div class="menu" id="menu-id">
           <div class="menu-item">
             <div class="menu-icon icon-home"></div>
-            <div class="menu-text text-home">Trang chủ</div>
+            <div class="menu-text text-home" id="menu-text">Trang chủ</div>
           </div>
           <div class="menu-item">
             <div class="menu-icon icon-report"></div>
-            <div class="menu-text text-report">Báo cáo</div>
+            <div class="menu-text text-report" id="menu-text">Báo cáo</div>
           </div>
           <div class="menu-item">
             <div class="menu-icon icon-employee"></div>
-            <div class="menu-text text-employee">Nhân viên</div>
+            <div class="menu-text text-employee" id="menu-text">Nhân viên</div>
           </div>
           <div class="menu-item">
             <div class="menu-icon icon-setting"></div>
-            <div class="menu-text text-setting">Cài đặt</div>
+            <div class="menu-text text-setting" id="menu-text">Cài đặt</div>
           </div>
         </div>
         <div class="collapse">
-          <button class="collapse-text">Thu Gọn</button>
+          <button class="collapse-text m-btn-cursor" id="btn-collapse">
+            Thu Gọn
+          </button>
         </div>
       </div>
       <div class="page-content">
@@ -74,8 +76,11 @@
               />
             </div>
             <div class="table-header-right">
-              <button id="btn-export" class="btn-export"></button>
-              <button id="btn-refresh" class="btn-refresh"></button>
+              <button id="btn-export" class="btn-export m-btn-cursor"></button>
+              <button
+                id="btn-refresh"
+                class="btn-refresh m-btn-cursor"
+              ></button>
             </div>
           </div>
 
@@ -226,7 +231,10 @@
       <div class="m-dialog-content">
         <div class="row row-1">
           <div><h2>Thông tin nhân viên</h2></div>
-          <button id="row1-close-dialog" class="row-1-close"></button>
+          <button
+            id="row1-close-dialog"
+            class="row-1-close m-btn-cursor"
+          ></button>
         </div>
         <div class="row row-2">
           <div class="id">
@@ -376,11 +384,11 @@
       </div>
     </div>
 
-    <div id="from-dialog-notice" class="m-dialog m-dialog-notice" hidden>
+    <div id="from-dialog-notice" class="m-dialog-notice">
       <div class="dialog-notice-container">
         <div class="dialog-noitice-header">
           <h2 class="dialog-notice-tile">Xóa Nhân viên</h2>
-          <button class="dialog-notice-close"></button>
+          <button class="dialog-notice-close m-btn-cursor"></button>
         </div>
         <div class="dialog-notice-content">
           <div class="content-icon"></div>
@@ -389,7 +397,7 @@
           </div>
         </div>
         <div class="dialog-noitice-btn">
-          <button class="m-btn btn-yes">Đồng ý</button>
+          <button class="m-btn btn-yes m-btn-cursor">Đồng ý</button>
         </div>
       </div>
     </div>
