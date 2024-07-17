@@ -108,105 +108,6 @@
                     <td>abc@gmail.com</td>
                     <td>HaiDuong</td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>001</td>
-                    <td>Nguyễn Đắc Trường</td>
-                    <td>Nam</td>
-                    <td class="text-align-center">16/10/2003</td>
-                    <td>abc@gmail.com</td>
-                    <td>HaiDuong</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>001</td>
-                    <td>Nguyễn Đắc Trường</td>
-                    <td>Nam</td>
-                    <td class="text-align-center">16/10/2003</td>
-                    <td>abc@gmail.com</td>
-                    <td>HaiDuong</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>001</td>
-                    <td>Nguyễn Đắc Trường</td>
-                    <td>Nam</td>
-                    <td class="text-align-center">16/10/2003</td>
-                    <td>abc@gmail.com</td>
-                    <td>HaiDuong</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>001</td>
-                    <td>Nguyễn Đắc Trường</td>
-                    <td>Nam</td>
-                    <td class="text-align-center">16/10/2003</td>
-                    <td>abc@gmail.com</td>
-                    <td>HaiDuong</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>001</td>
-                    <td>Nguyễn Đắc Trường</td>
-                    <td>Nam</td>
-                    <td class="text-align-center">16/10/2003</td>
-                    <td>abc@gmail.com</td>
-                    <td>HaiDuong</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>001</td>
-                    <td>Nguyễn Đắc Trường</td>
-                    <td>Nam</td>
-                    <td class="text-align-center">16/10/2003</td>
-                    <td>abc@gmail.com</td>
-                    <td>HaiDuong</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>001</td>
-                    <td>Nguyễn Đắc Trường</td>
-                    <td>Nam</td>
-                    <td class="text-align-center">16/10/2003</td>
-                    <td>abc@gmail.com</td>
-                    <td>HaiDuong</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>001</td>
-                    <td>Nguyễn Đắc Trường</td>
-                    <td>Nam</td>
-                    <td class="text-align-center">16/10/2003</td>
-                    <td>abc@gmail.com</td>
-                    <td>HaiDuong</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>001</td>
-                    <td>Nguyễn Đắc Trường</td>
-                    <td>Nam</td>
-                    <td class="text-align-center">16/10/2003</td>
-                    <td>abc@gmail.com</td>
-                    <td>HaiDuong</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>001</td>
-                    <td>Nguyễn Đắc Trường</td>
-                    <td>Nam</td>
-                    <td class="text-align-center">16/10/2003</td>
-                    <td>abc@gmail.com</td>
-                    <td>HaiDuong</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>001</td>
-                    <td>Nguyễn Đắc Trường</td>
-                    <td>Nam</td>
-                    <td class="text-align-center">16/10/2003</td>
-                    <td>abc@gmail.com</td>
-                    <td>HaiDuong</td>
-                  </tr>
                 </tbody>
               </table>
             </div>
@@ -227,28 +128,39 @@
         </div>
       </div>
     </div>
-    <div id="from-dialog" class="m-dialog">
+    <div id="from-dialog" class="m-dialog" mdialog>
       <div class="m-dialog-content">
         <div class="row row-1">
           <div><h2>Thông tin nhân viên</h2></div>
           <button
             id="row1-close-dialog"
-            class="row-1-close m-btn-cursor"
+            class="row-1-close m-btn-cursor mdialog__button--close"
           ></button>
         </div>
         <div class="row row-2">
           <div class="id">
-            <label for="mnv">Mã nhân viên</label>
+            <label for="mnv"
+              >Mã nhân viên<span style="color: red">*</span></label
+            >
             <input
               type="text"
               name="Manhanvien"
               id="mnv"
               style="width: 120px"
+              required
             />
           </div>
           <div class="name">
-            <label for="hoten">Họ và tên</label>
-            <input type="text" name="Hovaten" id="hoten" style="width: 200px" />
+            <label for="hoten"
+              >Họ và tên<span style="color: red">*</span></label
+            >
+            <input
+              type="text"
+              name="Hovaten"
+              id="hoten"
+              style="width: 200px"
+              required
+            />
           </div>
           <div class="date">
             <label for="ngaysinh">Ngày sinh</label>
@@ -268,6 +180,7 @@
                   name="gioitinh"
                   id="Nam"
                   style="width: 16px"
+                  checked
                 />
                 <label for="Nam">Nam</label>
               </div>
@@ -298,8 +211,14 @@
             <input type="text" name="vitri" id="vitri" style="width: 342px" />
           </div>
           <div class="cmtnd">
-            <label for="cmt">Số CMTND</label>
-            <input type="text" name="cmt" id="cmt" style="width: 220px" />
+            <label for="cmt">Số CMTND<span style="color: red">*</span></label>
+            <input
+              type="text"
+              name="cmt"
+              id="cmt"
+              style="width: 220px"
+              required
+            />
           </div>
           <div class="ngaycap">
             <label for="ngaycap">Ngày cấp</label>
@@ -329,21 +248,38 @@
         </div>
         <div class="row row-6">
           <div class="didong">
-            <label for="didong">ĐT di động</label>
-            <input type="text" name="didong" id="didong" style="width: 226px" />
+            <label for="didong"
+              >ĐT di động<span style="color: red">*</span></label
+            >
+            <input
+              type="text"
+              name="didong"
+              id="didong"
+              style="width: 226px"
+              required
+            />
           </div>
           <div class="dtcodinh">
-            <label for="dtcodinh">ĐT Cố định</label>
+            <label for="dtcodinh"
+              >ĐT Cố định<span style="color: red">*</span></label
+            >
             <input
               type="text"
               name="dtcodinh"
               id="dtcodinh"
               style="width: 226px"
+              required
             />
           </div>
           <div class="email">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" style="width: 220px" />
+            <label for="email">Email<span style="color: red">*</span></label>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              style="width: 220px"
+              required
+            />
           </div>
         </div>
         <div class="row row-7">
@@ -377,18 +313,20 @@
         </div>
         <div class="row-8">
           <div class="button-click">
-            <button class="huy">Hủy</button>
-            <button class="cat m-btn">Cất</button>
+            <button class="huy" id="btn-Cancel">Hủy</button>
+            <button class="cat m-btn" id="btn-Save">Cất</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div id="from-dialog-notice" class="m-dialog-notice">
+    <div id="from-dialog-notice" class="m-dialog-notice" mdialog>
       <div class="dialog-notice-container">
         <div class="dialog-noitice-header">
           <h2 class="dialog-notice-tile">Xóa Nhân viên</h2>
-          <button class="dialog-notice-close m-btn-cursor"></button>
+          <button
+            class="dialog-notice-close m-btn-cursor mdialog__button--close"
+          ></button>
         </div>
         <div class="dialog-notice-content">
           <div class="content-icon"></div>
@@ -397,7 +335,25 @@
           </div>
         </div>
         <div class="dialog-noitice-btn">
-          <button class="m-btn btn-yes m-btn-cursor">Đồng ý</button>
+          <button class="m-btn btn-yes m-btn-cursor">Có</button>
+          <button class="m-btn btn-no m-btn-cursor">Không</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="from-dialog-warning" class="m-dialog-warning" mdialog>
+      <div class="dialog-warning-container">
+        <div class="dialog-warning-header dialog-noitice-header">
+          <h2 class="dialog-warning-tile dialog-notice-tile">
+            Lỗi nhập dữ liệu
+          </h2>
+          <button
+            class="dialog-warning-close m-btn-cursor mdialog__button--close"
+          ></button>
+        </div>
+        <div class="dialog-warning-content dialog-notice-content">
+          <div class="content-icon-warning"></div>
+          <div class="content-text">Lỗi nhập dữ liệu</div>
         </div>
       </div>
     </div>
