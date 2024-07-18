@@ -6,9 +6,8 @@ class employeePage {
   pageTile = "Quản lý nhân viên ";
   constructor() {
     //thêm các button vào table
-    this.loadData();
-    this.addBtnTable();
     this.initEvents();
+    this.loadData();
   }
 
   /*
@@ -49,9 +48,12 @@ Nguyễn Đắc Trường
         .addEventListener("click", this.btnCollapse);
 
       //click xóa nhân viên hiển thị thư mục thông báo
-      document.querySelectorAll(".button-close-icon").forEach((button) => {
-        button.addEventListener("click", this.btnDeleteEmployee);
-      });
+      // const buttonTables = document.querySelectorAll(".button-close-icon");
+      // console.log(buttonTables);
+      // for (const button of buttonTables) {
+      //   button.addEventListener("click", this.btnDeleteEmployee.bind(this));
+      //   console.log(button);
+      // }
 
       //click đóng hoặc hủy thông báo xóa nhân viên
       // document
@@ -76,34 +78,34 @@ Nguyễn Đắc Trường
   //
   //Thêm các button vào cuối cột table
   //
-  addBtnTable() {
-    try {
-      const table = document.getElementById("data-table-id");
-      const rows = table.getElementsByTagName("tr");
-      for (let i = 1; i < rows.length; i++) {
-        // Bỏ qua hàng tiêu đề
-        const cell = rows[i].cells[rows[i].cells.length - 1]; // Chọn cột cuối cùng
-        const buttonContainer = document.createElement("div");
-        buttonContainer.className = "button-container";
+  // addBtnTable() {
+  //   try {
+  //     const table = document.getElementById("data-table-id");
+  //     const rows = table.getElementsByTagName("tr");
+  //     for (let i = 1; i < rows.length; i++) {
+  //       // Bỏ qua hàng tiêu đề
+  //       const cell = rows[i].cells[rows[i].cells.length - 1]; // Chọn cột cuối cùng
+  //       const buttonContainer = document.createElement("div");
+  //       buttonContainer.className = "button-container";
 
-        //tạo khối button
-        const editButton = document.createElement("button");
-        editButton.className = "button-table button-edit-icon m-btn-cursor";
-        const copyButton = document.createElement("button");
-        copyButton.className = "button-table button-copy-icon m-btn-cursor";
-        const closeButton = document.createElement("button");
-        closeButton.className = "button-table button-close-icon m-btn-cursor";
+  //       //tạo khối button
+  //       const editButton = document.createElement("button");
+  //       editButton.className = "button-table button-edit-icon m-btn-cursor";
+  //       const copyButton = document.createElement("button");
+  //       copyButton.className = "button-table button-copy-icon m-btn-cursor";
+  //       const closeButton = document.createElement("button");
+  //       closeButton.className = "button-table button-close-icon m-btn-cursor";
 
-        //thêm các button vào bên trong thẻ div
-        buttonContainer.appendChild(editButton);
-        buttonContainer.appendChild(copyButton);
-        buttonContainer.appendChild(closeButton);
-        cell.appendChild(buttonContainer);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  //       //thêm các button vào bên trong thẻ div
+  //       buttonContainer.appendChild(editButton);
+  //       buttonContainer.appendChild(copyButton);
+  //       buttonContainer.appendChild(closeButton);
+  //       cell.appendChild(buttonContainer);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
   //Dữ liệu nhân viên
   loadData() {
@@ -114,7 +116,7 @@ Nguyễn Đắc Trường
           // Lấy ra table
           const table = document.querySelector("#data-table-id");
           // Duyệt từng phần tử trong data:
-          let stt = 2;
+          let stt = 1;
           for (const item of data) {
             let tr = document.createElement("tr");
             tr.innerHTML = `<tr>
@@ -133,7 +135,15 @@ Nguyễn Đắc Trường
                 </td>
               </tr>`;
             table.querySelector("tbody").append(tr);
-            stt = stt + 1;
+            stt++;
+          }
+          // Gán sự kiện cho các nút sau khi chúng được thêm vào DOM
+          const buttonTables = document.querySelectorAll(".button-close-icon");
+          for (const button of buttonTables) {
+            button.addEventListener("click", this.btnDeleteEmployee.bind(this));
+            console.log(
+              "Đã thêm sự kiện cho button-close-icon sau khi tải dữ liệu"
+            );
           }
         })
       );
