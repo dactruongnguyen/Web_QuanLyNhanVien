@@ -7,6 +7,7 @@ class employeePage {
   constructor() {
     //thêm các button vào table
     this.initEvents();
+    this.showLoading();
     this.loadData();
   }
 
@@ -76,37 +77,23 @@ Nguyễn Đắc Trường
     }
   }
   //
-  //Thêm các button vào cuối cột table
+  //Thực hiện loading trước khi tải xong dữ liệu
   //
-  // addBtnTable() {
-  //   try {
-  //     const table = document.getElementById("data-table-id");
-  //     const rows = table.getElementsByTagName("tr");
-  //     for (let i = 1; i < rows.length; i++) {
-  //       // Bỏ qua hàng tiêu đề
-  //       const cell = rows[i].cells[rows[i].cells.length - 1]; // Chọn cột cuối cùng
-  //       const buttonContainer = document.createElement("div");
-  //       buttonContainer.className = "button-container";
-
-  //       //tạo khối button
-  //       const editButton = document.createElement("button");
-  //       editButton.className = "button-table button-edit-icon m-btn-cursor";
-  //       const copyButton = document.createElement("button");
-  //       copyButton.className = "button-table button-copy-icon m-btn-cursor";
-  //       const closeButton = document.createElement("button");
-  //       closeButton.className = "button-table button-close-icon m-btn-cursor";
-
-  //       //thêm các button vào bên trong thẻ div
-  //       buttonContainer.appendChild(editButton);
-  //       buttonContainer.appendChild(copyButton);
-  //       buttonContainer.appendChild(closeButton);
-  //       cell.appendChild(buttonContainer);
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-
+  showLoading() {
+    const loadingElement = document.querySelector(".m-loading");
+    if (loadingElement) {
+      loadingElement.style.display = "block";
+    }
+  }
+  //
+  //Thực hiển ấn loading sau khi dữ liệu đã tải xong
+  //
+  hideLoading() {
+    const loadingElement = document.querySelector(".m-loading");
+    if (loadingElement) {
+      loadingElement.style.display = "none";
+    }
+  }
   //Dữ liệu nhân viên
   loadData() {
     try {
@@ -118,13 +105,25 @@ Nguyễn Đắc Trường
           // Duyệt từng phần tử trong data:
           let stt = 1;
           for (const item of data) {
+            //Định dạng dữ liệu
+            //Dữ liệu ngày tháng phải hiển thị là ngày/tháng/năm
+            let identityDate = item.IdentityDate;
+            if (identityDate) {
+              identityDate = new Date(identityDate);
+              let date = identityDate.getDate();
+              date = date < 10 ? `0${date}` : date;
+              let month = identityDate.getMonth() + 1;
+              month = month < 10 ? `0${month}` : month;
+              let year = identityDate.getFullYear();
+              identityDate = `${date}/${month}/${year}`;
+            }
             let tr = document.createElement("tr");
             tr.innerHTML = `<tr>
                 <td>${stt}</td>
                 <td>${item.EmployeeCode}</td>
                 <td>${item.FullName}</td>
                 <td>${item.GenderName}</td>
-                <td class="text-align-center">${item.IdentityDate}</td>
+                <td class="text-align-center">${identityDate}</td>
                 <td>${item.Email}</td>
                 <td>${item.Address}
                 <div class="button-container">
@@ -141,10 +140,8 @@ Nguyễn Đắc Trường
           const buttonTables = document.querySelectorAll(".button-close-icon");
           for (const button of buttonTables) {
             button.addEventListener("click", this.btnDeleteEmployee.bind(this));
-            console.log(
-              "Đã thêm sự kiện cho button-close-icon sau khi tải dữ liệu"
-            );
           }
+          this.hideLoading();
         })
       );
     } catch (error) {
@@ -353,7 +350,7 @@ Nguyễn Đắc Trường
       console.error(error);
     }
   }
-
+  //click nút hủy trên from thông tin nhân viên
   btnCancelOnClick() {
     try {
       const inputs = document.querySelectorAll(".m-dialog-content .row input");

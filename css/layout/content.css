@@ -61,9 +61,8 @@
   position: relative;
 }
 
-.sticky-header {
+.sticky-header th {
   position: sticky;
   top: 0;
   background-color: #dfdfdf;
-  border: 3px solid #000000;
 }

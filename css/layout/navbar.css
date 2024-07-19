@@ -4,7 +4,7 @@
   background-color: rgb(16, 10, 68);
   padding: 16px;
   flex-direction: column;
-  transition: width 0.3s;
+  transition: width 0.2s;
 }
 .menu {
   width: 100%;

@@ -31,3 +31,34 @@ body {
   font-family: GoogleSands_Italic;
   src: url(/assets/font/GoogleSans-Italic.otf);
 }
+.m-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: rgba(209, 209, 209, 0.418);
+  background-image: url(/assets/icon/);
+  display: none;
+}
+.m-loading .m-loading-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 36px;
+  height: 36px;
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid #3498db; /* Blue */
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
