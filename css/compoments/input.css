@@ -14,3 +14,6 @@
 .m-input::placeholder {
   font-size: 11px;
 }
+.dialog-input {
+  border-color: #000;
+}

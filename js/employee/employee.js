@@ -29,10 +29,10 @@ Nguyễn Đắc Trường
       //xuất khẩu
       //xóa bản ghi
 
-      // Ẩn from thông tin nhân viên
-      // document
-      //   .getElementById("row1-close-dialog")
-      //   .addEventListener("click", this.btnCloseFrom);
+      //Ẩn from thông tin nhân viên
+      document
+        .getElementById("row1-close-dialog")
+        .addEventListener("click", this.btnCloseFrom);
 
       // ẩn from dialog dùng chung
       const buttons = document.querySelectorAll(
@@ -98,7 +98,7 @@ Nguyễn Đắc Trường
   loadData() {
     try {
       // gọi API lấy dữ liệu
-      fetch("/API/data/Employees.json").then((res) =>
+      fetch("https://cukcuk.manhnv.net/api/v1/Employees").then((res) =>
         res.json().then((data) => {
           // Lấy ra table
           const table = document.querySelector("#data-table-id");
@@ -179,7 +179,13 @@ Nguyễn Đắc Trường
     try {
       //Lấy element của from thông tin nhân viên
       const dialog = document.getElementById("from-dialog");
-      //2 set ẩn from
+      //2. đặt toàn về mặc định
+      const inputs = document.querySelectorAll(".m-dialog-content .row input");
+      for (const input of inputs) {
+        input.value = "";
+        input.style.borderColor = "rgba(221, 221, 221, 0.911)";
+      }
+      //3. set ẩn from
       dialog.style.display = "none";
     } catch (error) {
       console.error(error);
@@ -267,6 +273,60 @@ Nguyễn Đắc Trường
         dialog_warning.style.height = totalHeight + "px";
       } else {
         //Dữ liệu hợp lệ hết thì gọi api thực hiện thêm mới
+        //Lấy thông tin cần thiết để thêm nhân viên
+        const employeeCode = document.querySelector("#mnv").value;
+        const fullName = document.querySelector("#hoten").value;
+        const Email = document.querySelector("#email").value;
+        const ngaySinh = document.querySelector("#ngaysinh").value;
+        const diaChi = document.querySelector("#diachi").value;
+        const radios = document.querySelectorAll('input[name="gioitinh"]');
+        let gioiTinh;
+        // Duyệt qua các radio button
+        for (const radio of radios) {
+          // Kiểm tra nếu radio button đang được chọn
+          if (radio.checked) {
+            gioiTinh = radio.value;
+            break;
+          }
+        }
+        //2. Build Object
+        let employee = {
+          EmployeeCode: employeeCode,
+          FullName: fullName,
+          GenderName: gioiTinh,
+          DateOfBirth: ngaySinh,
+          Email: Email,
+          Address: diaChi,
+        };
+        //3.Gọi Api Thực hiện thêm mới
+        // Gọi Api Thực hiện thêm mới
+        this.showLoading();
+        fetch("https://cukcuk.manhnv.net/api/v1/Employees", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(employee),
+        })
+          .then((response) => {
+            this.hideLoading();
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            //4. hiển thị loading
+            this.showLoading();
+            //5.Sau khi thực hiện thêm xong thực hiển ấn loading, ẩn from chi tiết, loading lại dữ liệu
+            this.loadData();
+            this.btnCloseFrom();
+            alert("Dữ liệu đã được thêm mới thành công.");
+          })
+          .catch((error) => {
+            alert("Đã xảy ra lỗi khi thêm mới dữ liệu.");
+            this.hideLoading();
+          });
       }
     } catch (error) {
       console.error(error);
@@ -285,6 +345,8 @@ Nguyễn Đắc Trường
       const diDong = document.querySelector("#didong").value;
       const dtCoDinh = document.querySelector("#dtcodinh").value;
       const Email = document.querySelector("#email").value;
+      const ngaySinh = document.querySelector("#ngaysinh").value;
+      const ngayCap = document.querySelector("#ngaycap").value;
       if (
         employeeCode == "" ||
         employeeCode == null ||
@@ -341,7 +403,46 @@ Nguyễn Đắc Trường
         document.querySelector("#email").style.borderColor =
           "rgba(221, 221, 221, 0.911)";
       }
-
+      if (ngaySinh) {
+        // Chuyển đổi date thành đối tượng Date
+        const inputDate = new Date(ngaySinh);
+        const currentDate = new Date();
+        // Kiểm tra nếu ngày sinh lớn hơn ngày hiện tại
+        if (inputDate > currentDate) {
+          warning.Msg.push("Ngày sinh không được lớn hơn ngày hiện tại.");
+          document.querySelector("#ngaysinh").style.borderColor = "red";
+        } else {
+          // Đặt lại borderColor nếu ngày sinh hợp lệ
+          document.querySelector("#ngaysinh").style.borderColor =
+            "rgba(221, 221, 221, 0.911)";
+        }
+      }
+      if (ngayCap) {
+        // Chuyển đổi date thành đối tượng Date
+        const inputDate = new Date(ngayCap);
+        const currentDate = new Date();
+        // Kiểm tra nếu ngày sinh lớn hơn ngày hiện tại
+        if (inputDate > currentDate) {
+          warning.Msg.push("Ngày cấp không được lớn hơn ngày hiện tại.");
+          document.querySelector("#ngaycap").style.borderColor = "red";
+        } else {
+          // Đặt lại borderColor nếu ngày sinh hợp lệ
+          document.querySelector("#ngaycap").style.borderColor =
+            "rgba(221, 221, 221, 0.911)";
+        }
+      }
+      if (Email) {
+        // Biểu thức chính quy kiểm tra định dạng email
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(Email)) {
+          warning.Msg.push("Email không đúng định dạng.");
+          document.querySelector("#email").style.borderColor = "red";
+        } else {
+          // Đặt lại borderColor nếu ngày sinh hợp lệ
+          document.querySelector("#email").style.borderColor =
+            "rgba(221, 221, 221, 0.911)";
+        }
+      }
       if (warning.Msg.length === 0) {
         warning.isValid = true;
       }

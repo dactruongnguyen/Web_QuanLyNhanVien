@@ -89,11 +89,11 @@
               <table class="m-table" id="data-table-id">
                 <thead>
                   <tr class="sticky-header">
-                    <th style="width: 10px">STT</th>
-                    <th style="width: 100px">Mã nhân viên</th>
+                    <th>STT</th>
+                    <th>Mã nhân viên</th>
                     <th>Họ và tên</th>
-                    <th style="width: 80px">Giới tính</th>
-                    <th style="width: 120px">Ngày sinh</th>
+                    <th>Giới tính</th>
+                    <th>Ngày sinh</th>
                     <th>Địa chỉ Email</th>
                     <th>Địa chỉ</th>
                   </tr>
@@ -133,6 +133,7 @@
               >Mã nhân viên<span style="color: red">*</span></label
             >
             <input
+              class="dialog-input"
               type="text"
               name="Manhanvien"
               id="mnv"
@@ -145,6 +146,7 @@
               >Họ và tên<span style="color: red">*</span></label
             >
             <input
+              class="dialog-input"
               type="text"
               name="Hovaten"
               id="hoten"
@@ -155,6 +157,7 @@
           <div class="date">
             <label for="ngaysinh">Ngày sinh</label>
             <input
+              class="dialog-input"
               type="date"
               name="ngaysinh"
               id="ngaysinh"
@@ -166,29 +169,35 @@
             <div class="sex-value" style="width: 180px">
               <div>
                 <input
+                  class="dialog-input"
                   type="radio"
                   name="gioitinh"
                   id="Nam"
                   style="width: 16px"
+                  value="Nam"
                   checked
                 />
                 <label for="Nam">Nam</label>
               </div>
               <div>
                 <input
+                  class="dialog-input"
                   type="radio"
                   name="gioitinh"
                   id="Nu"
                   style="width: 16px"
+                  value="Nữ"
                 />
                 <label for="Nu">Nữ</label>
               </div>
               <div>
                 <input
+                  class="dialog-input"
                   type="radio"
                   name="gioitinh"
                   id="Khac"
                   style="width: 16px"
+                  value="Khác "
                 />
                 <label for="Khac">Khác</label>
               </div>
@@ -198,11 +207,18 @@
         <div class="row row-3">
           <div class="location">
             <label for="vitri">Vị trí</label>
-            <input type="text" name="vitri" id="vitri" style="width: 342px" />
+            <input
+              class="dialog-input"
+              type="text"
+              name="vitri"
+              id="vitri"
+              style="width: 342px"
+            />
           </div>
           <div class="cmtnd">
             <label for="cmt">Số CMTND<span style="color: red">*</span></label>
             <input
+              class="dialog-input"
               type="text"
               name="cmt"
               id="cmt"
@@ -212,13 +228,19 @@
           </div>
           <div class="ngaycap">
             <label for="ngaycap">Ngày cấp</label>
-            <input type="date" name="ngaycap" id="ngaycap" />
+            <input
+              class="dialog-input"
+              type="date"
+              name="ngaycap"
+              id="ngaycap"
+            />
           </div>
         </div>
         <div class="row row-4">
           <div class="phongban">
             <label for="phongban">Phòng ban</label>
             <input
+              class="dialog-input"
               type="text"
               name="phongban"
               id="phongban"
@@ -227,13 +249,25 @@
           </div>
           <div class="noicap">
             <label for="noicap">Nơi cấp</label>
-            <input type="text" name="noicap" id="noicap" style="width: 350px" />
+            <input
+              class="dialog-input"
+              type="text"
+              name="noicap"
+              id="noicap"
+              style="width: 350px"
+            />
           </div>
         </div>
         <div class="row row-5">
           <div class="diachi">
             <label for="diachi">Địa chỉ</label>
-            <input type="text" name="diachi" id="diachi" style="width: 714px" />
+            <input
+              class="dialog-input"
+              type="text"
+              name="diachi"
+              id="diachi"
+              style="width: 714px"
+            />
           </div>
         </div>
         <div class="row row-6">
@@ -242,6 +276,7 @@
               >ĐT di động<span style="color: red">*</span></label
             >
             <input
+              class="dialog-input"
               type="text"
               name="didong"
               id="didong"
@@ -254,6 +289,7 @@
               >ĐT Cố định<span style="color: red">*</span></label
             >
             <input
+              class="dialog-input"
               type="text"
               name="dtcodinh"
               id="dtcodinh"
@@ -264,6 +300,7 @@
           <div class="email">
             <label for="email">Email<span style="color: red">*</span></label>
             <input
+              class="dialog-input"
               type="text"
               name="email"
               id="email"
@@ -276,6 +313,7 @@
           <div class="tknganghang">
             <label for="tknganhang">Tài khoản ngân hàng</label>
             <input
+              class="dialog-input"
               type="text"
               name="tknganghang"
               id="tknganghang"
@@ -285,6 +323,7 @@
           <div class="tennganhang">
             <label for="tennganhang">Tên ngân hàng</label>
             <input
+              class="dialog-input"
               type="text"
               name="tennganhang"
               id="tennganhang"
@@ -294,6 +333,7 @@
           <div class="chinhanh">
             <label for="chinhanh">Chi nhánh</label>
             <input
+              class="dialog-input"
               type="text"
               name="chinhanh"
               id="chinhanh"
