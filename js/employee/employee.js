@@ -4,8 +4,9 @@ window.onload = function () {
 
 class employeePage {
   pageTile = "Quản lý nhân viên ";
+  fromMode = "save";
+  employeeIdForUpdate = null;
   constructor() {
-    //thêm các button vào table
     this.initEvents();
     this.showLoading();
     this.loadData();
@@ -15,6 +16,7 @@ class employeePage {
 Khởi tạo các sự kiện trong page
 Nguyễn Đắc Trường
 */
+
   initEvents() {
     try {
       //click hiển thị thêm from mới
@@ -76,6 +78,7 @@ Nguyễn Đắc Trường
       console.error(error);
     }
   }
+
   //
   //Thực hiện loading trước khi tải xong dữ liệu
   //
@@ -133,13 +136,24 @@ Nguyễn Đắc Trường
                 </div>
                 </td>
               </tr>`;
+            tr.dataset.entity = JSON.stringify(item);
             table.querySelector("tbody").append(tr);
             stt++;
           }
           // Gán sự kiện cho các nút sau khi chúng được thêm vào DOM
-          const buttonTables = document.querySelectorAll(".button-close-icon");
-          for (const button of buttonTables) {
+          //1. Gán sự kiện nút close
+          const buttonTableClose =
+            document.querySelectorAll(".button-close-icon");
+          for (const button of buttonTableClose) {
             button.addEventListener("click", this.btnDeleteEmployee.bind(this));
+          }
+          //2. Gán sự kiện nút chỉnh sửa
+          const buttonTableEdit =
+            document.querySelectorAll(".button-edit-icon");
+          for (const button of buttonTableEdit) {
+            button.addEventListener("click", (event) =>
+              this.btnEditEmployee(event)
+            );
           }
           this.hideLoading();
         })
@@ -154,6 +168,7 @@ Nguyễn Đắc Trường
   //
   btnThemMoi() {
     try {
+      this.fromMode = "save";
       //1. Lấy ra element của from thông tin nhân viên
       const dialog = document.getElementById("from-dialog");
       //2. Set hiển thị from
@@ -231,6 +246,42 @@ Nguyễn Đắc Trường
     }
   }
   //
+  //click sửa nhân viên sẽ hiển thị thông báo
+  //
+  btnEditEmployee() {
+    try {
+      this.fromMode = "edit";
+      // Tìm hàng (tr) chứa nút được nhấn
+      const tr = event.target.closest("tr");
+      if (tr) {
+        // Lấy dữ liệu từ dataset
+        const item = JSON.parse(tr.dataset.entity);
+        this.employeeIdForUpdate = item.EmployeeId;
+        console.log(this.employeeIdForUpdate);
+        // Điền dữ liệu vào các trường trong form
+        document.getElementById("mnv").value = item.EmployeeCode;
+        document.getElementById("hoten").value = item.FullName;
+        document.getElementById("ngaysinh").value = item.IdentityDate
+          ? new Date(item.IdentityDate).toISOString().slice(0, 10)
+          : "";
+        document.getElementById("email").value = item.Email;
+        document.getElementById("diachi").value = item.Address;
+        // Cập nhật giá trị giới tính
+        if (item.GenderName === "Nam") {
+          document.getElementById("Nam").checked = true;
+        } else if (item.GenderName === "Nữ") {
+          document.getElementById("Nu").checked = true;
+        } else {
+          document.getElementById("Khac").checked = true;
+        }
+        // Hiển thị form thông tin nhân viên
+        document.getElementById("from-dialog").style.display = "block";
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  //
   //click đóng thông báo xóa nhân viên sẽ hiển thị thông báo
   //
   btnCloseNotice() {
@@ -301,32 +352,64 @@ Nguyễn Đắc Trường
         //3.Gọi Api Thực hiện thêm mới
         // Gọi Api Thực hiện thêm mới
         this.showLoading();
-        fetch("https://cukcuk.manhnv.net/api/v1/Employees", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(employee),
-        })
-          .then((response) => {
-            this.hideLoading();
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
+        if (this.fromMode == "save") {
+          fetch("https://cukcuk.manhnv.net/api/v1/Employees", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(employee),
+          })
+            .then((response) => {
+              this.hideLoading();
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              //4. hiển thị loading
+              this.showLoading();
+              //5.Sau khi thực hiện thêm xong thực hiển ấn loading, ẩn from chi tiết, loading lại dữ liệu
+              this.loadData();
+              this.btnCloseFrom();
+              alert("Dữ liệu đã được thêm mới thành công.");
+            })
+            .catch((error) => {
+              alert("Đã xảy ra lỗi khi thêm mới dữ liệu.");
+              this.hideLoading();
+            });
+        } else {
+          fetch(
+            `https://cukcuk.manhnv.net/api/v1/Employees/${this.employeeIdForUpdate}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(employee),
             }
-            return response.json();
-          })
-          .then((data) => {
-            //4. hiển thị loading
-            this.showLoading();
-            //5.Sau khi thực hiện thêm xong thực hiển ấn loading, ẩn from chi tiết, loading lại dữ liệu
-            this.loadData();
-            this.btnCloseFrom();
-            alert("Dữ liệu đã được thêm mới thành công.");
-          })
-          .catch((error) => {
-            alert("Đã xảy ra lỗi khi thêm mới dữ liệu.");
-            this.hideLoading();
-          });
+          )
+            .then((response) => {
+              this.hideLoading();
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              //4. hiển thị loading
+              this.showLoading();
+              //5.Sau khi thực hiện sửa xong thực hiển ấn loading, ẩn from chi tiết, loading lại dữ liệu
+              this.loadData();
+              this.btnCloseFrom();
+              alert("Dữ liệu đã được sửa thành công.");
+            })
+            .catch((error) => {
+              alert("Đã xảy ra lỗi khi sửa dữ liệu.");
+              this.hideLoading();
+            });
+        }
       }
     } catch (error) {
       console.error(error);
