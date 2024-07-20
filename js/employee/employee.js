@@ -6,6 +6,7 @@ class employeePage {
   pageTile = "Quản lý nhân viên ";
   fromMode = "save";
   employeeIdForUpdate = null;
+  employeeIdForDelete = null;
   constructor() {
     this.initEvents();
     this.showLoading();
@@ -74,6 +75,10 @@ Nguyễn Đắc Trường
       document
         .querySelector("#btn-Cancel")
         .addEventListener("click", this.btnCancelOnClick);
+      //click nút Có ở thông báo xóa nhân viên
+      document
+        .querySelector(".btn-yes")
+        .addEventListener("click", this.btnYes.bind(this));
     } catch (error) {
       console.error(error);
     }
@@ -105,6 +110,8 @@ Nguyễn Đắc Trường
         res.json().then((data) => {
           // Lấy ra table
           const table = document.querySelector("#data-table-id");
+          const tbody = table.querySelector("tbody");
+          tbody.innerHTML = ""; // Xóa dữ liệu cũ trong tbody
           // Duyệt từng phần tử trong data:
           let stt = 1;
           for (const item of data) {
@@ -241,6 +248,14 @@ Nguyễn Đắc Trường
       const notice = document.querySelector(".m-dialog-notice");
       // set hiện thông báo
       notice.style.display = "block";
+      // Tìm hàng (tr) chứa nút được nhấn
+      const tr = event.target.closest("tr");
+      if (tr) {
+        // Lấy dữ liệu từ dataset
+        const item = JSON.parse(tr.dataset.entity);
+        this.employeeIdForDelete = item.EmployeeId;
+        console.log(this.employeeIdForDelete);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -542,6 +557,47 @@ Nguyễn Đắc Trường
         input.value = "";
         input.style.borderColor = "rgba(221, 221, 221, 0.911)";
       }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  btnYes() {
+    try {
+      if (!this.employeeIdForDelete) {
+        console.error("Employee ID is not defined.");
+        return;
+      }
+
+      fetch(
+        `https://cukcuk.manhnv.net/api/v1/Employees/${this.employeeIdForDelete}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((response) => {
+          this.hideLoading();
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json(); // optional if you need to process response data
+        })
+        .then((data) => {
+          // Hiển thị loading
+          document.querySelector("#from-dialog-notice").style.display = "none";
+          this.showLoading();
+          // Sau khi thực hiện thêm xong thực hiện ẩn form chi tiết, loading lại dữ liệu
+          this.loadData();
+          this.btnCloseFrom();
+          alert("Dữ liệu đã được xóa thành công.");
+        })
+        .catch((error) => {
+          alert("Đã xảy ra lỗi khi xóa dữ liệu.");
+          console.error("Error:", error);
+          this.hideLoading();
+        });
     } catch (error) {
       console.error(error);
     }
