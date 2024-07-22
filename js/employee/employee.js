@@ -79,6 +79,13 @@ Nguyễn Đắc Trường
       document
         .querySelector(".btn-yes")
         .addEventListener("click", this.btnYes.bind(this));
+      //click nút search theo mã, họ tên
+      document
+        .querySelector(".table-header-left .m-icon-search")
+        .addEventListener("input", this.selectEmployee.bind(this));
+      document
+        .querySelector("#btn-refresh")
+        .addEventListener("click", this.loadData.bind(this));
     } catch (error) {
       console.error(error);
     }
@@ -105,6 +112,7 @@ Nguyễn Đắc Trường
   //Dữ liệu nhân viên
   loadData() {
     try {
+      this.showLoading();
       // gọi API lấy dữ liệu
       fetch("https://cukcuk.manhnv.net/api/v1/Employees").then((res) =>
         res.json().then((data) => {
@@ -561,6 +569,7 @@ Nguyễn Đắc Trường
       console.error(error);
     }
   }
+  //Nhấn nút có trên from thông báo xóa nhân viên
   btnYes() {
     try {
       if (!this.employeeIdForDelete) {
@@ -598,6 +607,88 @@ Nguyễn Đắc Trường
           console.error("Error:", error);
           this.hideLoading();
         });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  //Tìm kiếm theo mã nhân viên, Họ tên
+  selectEmployee() {
+    try {
+      this.showLoading();
+      // gọi API lấy dữ liệu
+      fetch("https://cukcuk.manhnv.net/api/v1/Employees").then((res) =>
+        res.json().then((data) => {
+          // Lấy ra table
+          const table = document.querySelector("#data-table-id");
+          const tbody = table.querySelector("tbody");
+          tbody.innerHTML = ""; // Xóa dữ liệu cũ trong tbody
+          //Lấy ra mã nhân viên trong input
+          const employCode = document.querySelector("#m-search-employee");
+          // Duyệt từng phần tử trong data:
+          for (const item of data) {
+            if (
+              employCode.value == item.EmployeeCode &&
+              employCode.value != ""
+            ) {
+              //Định dạng dữ liệu
+              //Dữ liệu ngày tháng phải hiển thị là ngày/tháng/năm
+              let identityDate = item.IdentityDate;
+              if (identityDate) {
+                identityDate = new Date(identityDate);
+                let date = identityDate.getDate();
+                date = date < 10 ? `0${date}` : date;
+                let month = identityDate.getMonth() + 1;
+                month = month < 10 ? `0${month}` : month;
+                let year = identityDate.getFullYear();
+                identityDate = `${date}/${month}/${year}`;
+              }
+              let tr = document.createElement("tr");
+              tr.innerHTML = `<tr>
+                <td>${1}</td>
+                <td>${item.EmployeeCode}</td>
+                <td>${item.FullName}</td>
+                <td>${item.GenderName}</td>
+                <td class="text-align-center">${identityDate}</td>
+                <td>${item.Email}</td>
+                <td>${item.Address}
+                <div class="button-container">
+                <button class="button-table button-edit-icon m-btn-cursor"></button>
+                <button class="button-table button-copy-icon m-btn-cursor"></button>
+                <button class="button-table button-close-icon m-btn-cursor"></button>
+                </div>
+                </td>
+              </tr>`;
+              tr.dataset.entity = JSON.stringify(item);
+              table.querySelector("tbody").append(tr);
+              // Gán sự kiện cho các nút sau khi chúng được thêm vào DOM
+              //1. Gán sự kiện nút close
+              const buttonTableClose =
+                document.querySelectorAll(".button-close-icon");
+              for (const button of buttonTableClose) {
+                button.addEventListener(
+                  "click",
+                  this.btnDeleteEmployee.bind(this)
+                );
+              }
+              //2. Gán sự kiện nút chỉnh sửa
+              const buttonTableEdit =
+                document.querySelectorAll(".button-edit-icon");
+              for (const button of buttonTableEdit) {
+                button.addEventListener("click", (event) =>
+                  this.btnEditEmployee(event)
+                );
+              }
+              employCode.value = "";
+              break;
+            } else {
+              const tbody = table.querySelector("tbody");
+              tbody.innerHTML = ""; // Xóa dữ liệu cũ trong tbody
+            }
+          }
+          this.hideLoading();
+        })
+      );
     } catch (error) {
       console.error(error);
     }
