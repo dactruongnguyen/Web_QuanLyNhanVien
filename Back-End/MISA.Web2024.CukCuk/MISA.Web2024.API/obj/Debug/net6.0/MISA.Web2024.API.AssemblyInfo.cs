@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MISA.Web2024.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb8773d2bf6aacdf35f0bcf3eaf0eeafbbde6a0a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+68bfcd0e66ae964fc2c2c3068f7de3b147207889")]
 [assembly: System.Reflection.AssemblyProductAttribute("MISA.Web2024.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MISA.Web2024.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -45,7 +45,7 @@ namespace MISA.Web2024.API.Controllers
                 var employees = sqlConnection.Query<Employee>(sql: sqlCommand);
 
                 // Trả về kết quả cho Client
-                return Ok(employees);
+                return StatusCode(201, employees);
             }
             catch (Exception ex)
             {
@@ -55,10 +55,10 @@ namespace MISA.Web2024.API.Controllers
                 error.Data = ex.Data;
                 return StatusCode(500, error);
             }
-   
+
         }
-        [HttpGet("{employeeId}")]
-        public IActionResult GetById(Guid employeeId)
+        [HttpGet("{EmployeeId}")]
+        public IActionResult GetById(Guid EmployeeId)
         {
             try
             {
@@ -72,12 +72,12 @@ namespace MISA.Web2024.API.Controllers
 
                 var sqlCommand = $"SELECT * FROM Employee WHERE EmployeeId = '@EmployeeId'";
                 DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@EmployeeId", employeeId);
+                parameters.Add("@EmployeeId", EmployeeId);
                 //2.2 Thực hiện truy vấn dữ liệu:
                 var employees = sqlConnection.QueryFirstOrDefault<Employee>(sql: sqlCommand, param: parameters);
 
                 // Trả về kết quả cho Client
-                return Ok(employees);
+                return StatusCode(201, employees);
             }
             catch (Exception ex)
             {
@@ -88,7 +88,7 @@ namespace MISA.Web2024.API.Controllers
                 error.Data = ex.Data;
                 return StatusCode(500, error);
             }
-            
+
         }
         //Thêm mới nhân viên
         //return 201 - thêm thành công
@@ -103,10 +103,10 @@ namespace MISA.Web2024.API.Controllers
                 var error = new ErrorService();
                 var errorData = new Dictionary<string, string>();
                 //1.2 Mã nhân viên không được phép để trống
-                if(string.IsNullOrEmpty(employee.EmployeeCode))
+                if (string.IsNullOrEmpty(employee.EmployeeCode))
                 {
-                    errorData.Add("EmployeeCode","Mã nhân viên không được phép để trống");
-                      
+                    errorData.Add("EmployeeCode", "Mã nhân viên không được phép để trống");
+
                 }
                 //thông tin nhân viên bắt buộc nhập
                 if (string.IsNullOrEmpty(employee.FullName))
@@ -114,22 +114,22 @@ namespace MISA.Web2024.API.Controllers
                     errorData.Add("FullName", "Họ và tên nhân viên không được phép để trống");
                 }
                 //email phải đúng định dạng
-                if (!IsValidEmail(email:employee.Email)) 
+                if (!IsValidEmail(email: employee.Email))
                 {
                     errorData.Add("Email", "Email không đúng định dạng");
                 }
                 //Mã nhân viên không được phép trùng 
-                if(CheckEmployeeCode(employee.EmployeeCode))
+                if (CheckEmployeeCode(employee.EmployeeCode))
                 {
                     errorData.Add("EmployeeCode", "Mã nhân viên không được phép trùng");
-                }    
+                }
                 //Ngày sinh không được lớn hơn ngày hiện tại
                 //...
                 if (errorData.Count > 0)
                 {
                     error.UserMsg = "Dữ liệu đầu vào không hợp lệ";
                     error.Data = errorData;
-                    return BadRequest(error);   
+                    return BadRequest(error);
                 }
                 //Khai báo thông tin database
                 var connectionString = "Host=8.222.228.150; Port=3306; Database = HAUI_2021605543_NguyenDacTruong; User Id = manhnv; Password = 12345678";
@@ -140,7 +140,7 @@ namespace MISA.Web2024.API.Controllers
                                  "VALUES (@EmployeeId, @EmployeeCode, @FullName, @DateOfBirth,  @IdentityNumber, @Email, @PhoneNumber, @Address, @LandlineNumber, @BankAccount, @BankName)";
                 //var dynamicParam = new DynamicParameters();
                 employee.EmployeeId = Guid.NewGuid();
-                var res = sqlConnection.Execute(sql:sqlCommand, param: employee);
+                var res = sqlConnection.Execute(sql: sqlCommand, param: employee);
                 return StatusCode(201, res);
             }
             catch (Exception ex)
@@ -149,6 +149,114 @@ namespace MISA.Web2024.API.Controllers
                 var error = new ErrorService();
                 error.DevMsg = ex.Message;
                 error.UserMsg = Resources.ResourceVN.Error_Exception;
+                error.Data = ex.Data;
+                return StatusCode(500, error);
+            }
+        }
+        //Sửa thông tin nhân viên
+        [HttpPut("{EmployeeId}")]
+        public IActionResult Put(Guid EmployeeId, Employee employee)
+        {
+            try
+            {
+                // Khởi tạo dịch vụ lỗi
+                var error = new ErrorService();
+                var errorData = new Dictionary<string, string>();
+
+                // Kiểm tra mã nhân viên không được phép để trống
+                if (string.IsNullOrEmpty(employee.EmployeeCode))
+                {
+                    errorData.Add("EmployeeCode", "Mã nhân viên không được phép để trống");
+                }
+
+                // Kiểm tra họ và tên không được phép để trống
+                if (string.IsNullOrEmpty(employee.FullName))
+                {
+                    errorData.Add("FullName", "Họ và tên nhân viên không được phép để trống");
+                }
+
+                // Kiểm tra định dạng email
+                if (!IsValidEmail(employee.Email))
+                {
+                    errorData.Add("Email", "Email không đúng định dạng");
+                }
+
+                // Kiểm tra ngày sinh không được lớn hơn ngày hiện tại (bạn cần bổ sung logic kiểm tra ngày sinh)
+                //...
+
+                // Nếu có lỗi, trả về BadRequest với thông tin lỗi
+                if (errorData.Count > 0)
+                {
+                    error.UserMsg = "Dữ liệu đầu vào không hợp lệ";
+                    error.Data = errorData;
+                    return BadRequest(error);
+                }
+
+                // Khai báo thông tin kết nối database
+                var connectionString = "Host=8.222.228.150; Port=3306; Database=HAUI_2021605543_NguyenDacTruong; User Id=manhnv; Password=12345678";
+
+                // Khởi tạo kết nối với MySQL
+                using (var sqlConnection = new MySqlConnection(connectionString))
+                {
+                    sqlConnection.Open();
+
+                    // Cập nhật thông tin nhân viên vào database
+                    var sqlCommand = "UPDATE Employee SET EmployeeCode = @EmployeeCode, FullName = @FullName, DateOfBirth = @DateOfBirth, " +
+                                     "IdentityNumber = @IdentityNumber, Email = @Email, PhoneNumber = @PhoneNumber, Address = @Address, " +
+                                     "LandlineNumber = @LandlineNumber, BankAccount = @BankAccount, BankName = @BankName WHERE EmployeeId = @EmployeeId";
+
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@EmployeeId", EmployeeId);
+                    parameters.Add("@EmployeeCode", employee.EmployeeCode);
+                    parameters.Add("@FullName", employee.FullName);
+                    parameters.Add("@DateOfBirth", employee.DateOfBirth);
+                    parameters.Add("@IdentityNumber", employee.IdentityNumber);
+                    parameters.Add("@Email", employee.Email);
+                    parameters.Add("@PhoneNumber", employee.PhoneNumber);
+                    parameters.Add("@Address", employee.Address);
+                    parameters.Add("@LandlineNumber", employee.LandlineNumber);
+                    parameters.Add("@BankAccount", employee.BankAccount);
+                    parameters.Add("@BankName", employee.BankName);
+
+                    var res = sqlConnection.Execute(sqlCommand, parameters);
+
+                    return StatusCode(200, res);
+                }
+            }
+            catch (Exception ex)
+            {
+                var error = new ErrorService();
+                error.DevMsg = ex.Message;
+                error.UserMsg = "Đã có lỗi xảy ra. Vui lòng thử lại sau.";
+                error.Data = ex.Data;
+                return StatusCode(500, error);
+            }
+        }
+        //Xóa nhân viên
+        [HttpDelete("{EmployeeId}")]
+        public IActionResult Delete(Guid EmployeeId)
+        {
+            try
+            {
+                var connectionString = "Host=8.222.228.150; Port=3306; Database = HAUI_2021605543_NguyenDacTruong; User Id = manhnv; Password = 12345678";
+                //1.1 Khởi tạo kết nối với MarieDB:
+                var sqlConnection = new MySqlConnection(connectionString);
+                //Thực hiện thêm mới vòa data base
+                var sqlCommand = "DELETE FROM Employee WHERE EmployeeId = @EmployeeId";
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@EmployeeId", EmployeeId);
+                //2.2 Thực hiện truy vấn dữ liệu:
+                var employees = sqlConnection.QueryFirstOrDefault<Employee>(sql: sqlCommand, param: parameters);
+
+                // Trả về kết quả cho Client
+                return StatusCode(201, employees);
+            }
+            catch (Exception ex)
+            {
+
+                var error = new ErrorService();
+                error.DevMsg = ex.Message;
+                error.UserMsg = "Đã có lỗi xảy ra. Vui lòng thử lại sau.";
                 error.Data = ex.Data;
                 return StatusCode(500, error);
             }
