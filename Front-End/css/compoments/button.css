@@ -26,20 +26,20 @@
 }
 
 .m-btn-icon-add {
-  background-image: url(/assets/icon/add.png);
+  background-image: url(/Front-End/assets/icon/add.png);
   cursor: pointer;
 }
 
 .m-btn-prev {
   background-color: white;
-  background-image: url(/assets/icon/btn-prev-page.svg);
+  background-image: url(/Front-End/assets/icon/btn-prev-page.svg);
   background-repeat: no-repeat;
   background-size: 16px;
   border: none;
 }
 .m-btn-next {
   background-color: white;
-  background-image: url(/assets/icon/btn-next-page.svg);
+  background-image: url(/Front-End/assets/icon/btn-next-page.svg);
   background-repeat: no-repeat;
   background-size: 16px;
   border: none;
@@ -47,7 +47,7 @@
 .m-dialog .m-dialog-content .row-1-close {
   width: 24px;
   height: 24px;
-  background-image: url(/assets/icon/close-48.png);
+  background-image: url(/Front-End/assets/icon/close-48.png);
   background-position: center;
   background-size: contain;
   border: none;
@@ -93,11 +93,11 @@ tr:hover .button-container {
 }
 
 .button-container .button-edit-icon {
-  background-image: url(/assets/icon/edit-icon.png);
+  background-image: url(/Front-End/assets/icon/edit-icon.png);
 }
 .button-container .button-copy-icon {
-  background-image: url(/assets/icon/copy-icon.png);
+  background-image: url(/Front-End/assets/icon/copy-icon.png);
 }
 .button-container .button-close-icon {
-  background-image: url(/assets/icon/close-48.png);
+  background-image: url(/Front-End/assets/icon/close-48.png);
 }

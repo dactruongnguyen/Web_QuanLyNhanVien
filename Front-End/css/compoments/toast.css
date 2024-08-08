@@ -26,22 +26,22 @@
   margin-right: 8px;
 }
 .toast-block .icon-question {
-  background-image: url(/assets/icon/question-48.png);
+  background-image: url(/Front-End/assets/icon/question-48.png);
 }
 .toast-block .icon-error {
-  background-image: url(/assets/icon/error-48.png);
+  background-image: url(/Front-End/assets/icon/error-48.png);
 }
 .toast-block .icon-warning {
-  background-image: url(/assets/icon/warning-48.png);
+  background-image: url(/Front-End/assets/icon/warning-48.png);
 }
 .toast-block .icon-info {
-  background-image: url(/assets/icon/info-48.png);
+  background-image: url(/Front-End/assets/icon/info-48.png);
 }
 .toast-block .icon-success {
-  background-image: url(/assets/icon/success-48.png);
+  background-image: url(/Front-End/assets/icon/success-48.png);
 }
 .toast-block .toast-buttton {
-  background-image: url(/assets/icon/close-48.png);
+  background-image: url(/Front-End/assets/icon/close-48.png);
   width: 16px;
   height: 16px;
   background-repeat: no-repeat;

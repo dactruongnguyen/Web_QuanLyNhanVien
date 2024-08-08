@@ -1,14 +1,14 @@
-@import url(/css/compoments/button.css);
-@import url(/css/compoments/input.css);
-@import url(/css/compoments/icon.css);
-@import url(/css/compoments/table.css);
-@import url(/css/compoments/paging.css);
-@import url(/css/compoments/select.css);
-@import url(/css/compoments/dialog.css);
-@import url(/css/layout/header.css);
-@import url(/css/layout/navbar.css);
-@import url(/css/layout/content.css);
-@import url(/css/compoments/toast.css);
+@import url(/Front-End/css/compoments/button.css);
+@import url(/Front-End/css/compoments/input.css);
+@import url(/Front-End/css/compoments/icon.css);
+@import url(/Front-End/css/compoments/table.css);
+@import url(/Front-End/css/compoments/paging.css);
+@import url(/Front-End/css/compoments/select.css);
+@import url(/Front-End/css/compoments/dialog.css);
+@import url(/Front-End/css/layout/header.css);
+@import url(/Front-End/css/layout/navbar.css);
+@import url(/Front-End/css/layout/content.css);
+@import url(/Front-End/css/compoments/toast.css);
 body {
   font-family: GoogleSands;
   margin: 0px;
@@ -21,15 +21,15 @@ body {
 }
 @font-face {
   font-family: GoogleSands_Bold;
-  src: url(/assets/font/GoogleSans-Bold.otf);
+  src: url(/Front-End/assets/font/GoogleSans-Bold.otf);
 }
 @font-face {
   font-family: GoogleSands;
-  src: url(/assets/font/GoogleSans-Regular.otf);
+  src: url(/Front-End/assets/font/GoogleSans-Regular.otf);
 }
 @font-face {
   font-family: GoogleSands_Italic;
-  src: url(/assets/font/GoogleSans-Italic.otf);
+  src: url(/Front-End/assets/font/GoogleSans-Italic.otf);
 }
 .m-loading {
   position: fixed;
@@ -39,7 +39,7 @@ body {
   bottom: 0;
   z-index: 999;
   background-color: rgba(209, 209, 209, 0.418);
-  background-image: url(/assets/icon/);
+  background-image: url(/Front-End/assets/icon/);
   display: none;
 }
 .m-loading .m-loading-icon {

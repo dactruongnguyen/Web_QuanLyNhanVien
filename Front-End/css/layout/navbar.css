@@ -33,16 +33,16 @@
 }
 
 .menu-item .icon-home {
-  background-image: url(/assets/icon/dashboard.png);
+  background-image: url(/Front-End/assets/icon/dashboard.png);
 }
 .menu-item .icon-report {
-  background-image: url(/assets/icon/report.png);
+  background-image: url(/Front-End/assets/icon/report.png);
 }
 .menu-item .icon-employee {
-  background-image: url(/assets/icon/dic-employee.png);
+  background-image: url(/Front-End/assets/icon/dic-employee.png);
 }
 .menu-item .icon-setting {
-  background-image: url(/assets/icon/setting.png);
+  background-image: url(/Front-End/assets/icon/setting.png);
 }
 .menu-item .menu-text {
   color: white;
