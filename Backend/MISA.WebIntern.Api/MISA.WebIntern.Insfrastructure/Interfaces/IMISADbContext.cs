@@ -17,5 +17,6 @@ namespace MISA.WebIntern.Insfrastructure.Interfaces
         int Update<T>(Guid id, T entity);
         int Delete<T>(Guid id);
         int DeleteAny<T>(Guid[] ids);
+        //
     }
 }

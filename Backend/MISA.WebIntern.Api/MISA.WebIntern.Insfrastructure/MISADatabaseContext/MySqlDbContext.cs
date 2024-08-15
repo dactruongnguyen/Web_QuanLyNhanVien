@@ -71,7 +71,13 @@ namespace MISA.WebIntern.Insfrastructure.MISADatabaseContext
 
          
         }
-
+        /// <summary>
+        /// Update
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception> Nguyen Dac Truong
         public int Update<T>(T entity)
         {
             var className = typeof(T).Name;

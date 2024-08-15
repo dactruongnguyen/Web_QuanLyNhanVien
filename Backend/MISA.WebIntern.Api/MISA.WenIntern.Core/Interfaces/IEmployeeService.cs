@@ -9,6 +9,6 @@ namespace MISA.WenIntern.Core.Interfaces
 {
     public interface IEmployeeService:IBaseService<Employee>
     {
-        
+     ///Thong tin nhan vien   
     }
 }

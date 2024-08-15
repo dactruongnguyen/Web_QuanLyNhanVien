@@ -106,7 +106,14 @@ namespace MISA.WebIntern.Insfrastructure.MISADatabaseContext
             res = Connection.Execute(sql, parameters);
             return res;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public int Update<T>(Guid id, T entity)
         {
             throw new NotImplementedException();

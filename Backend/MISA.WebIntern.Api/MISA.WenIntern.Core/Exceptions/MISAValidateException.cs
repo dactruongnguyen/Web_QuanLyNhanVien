@@ -13,6 +13,9 @@ namespace MISA.WenIntern.Core.Exceptions
         {
             this.MsgError = error;
         }
+        /// <summary>
+        /// NguyenDacTruong
+        /// </summary>
         public override string Message => this.MsgError;
     }
 }

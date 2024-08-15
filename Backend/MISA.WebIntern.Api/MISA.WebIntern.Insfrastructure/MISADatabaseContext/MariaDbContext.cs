@@ -104,6 +104,12 @@ namespace MISA.WebIntern.Insfrastructure.MISADatabaseContext
             return res;
         }
 
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <returns></returns> Nguyen Dac Truong 15/8/2024
         public int Delete<T>(Guid id)
         {
             var className = typeof(T).Name;
@@ -113,7 +119,12 @@ namespace MISA.WebIntern.Insfrastructure.MISADatabaseContext
             var res = Connection.Execute(sql, parameters);
             return res;
         }
-
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ids"></param>
+        /// <returns></returns>
         public int DeleteAny<T>(Guid[] ids)
         {
             var className = typeof(T).Name;
