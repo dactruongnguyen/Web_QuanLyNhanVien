@@ -318,7 +318,7 @@ Nguyễn Đắc Trường
       console.error(error);
     }
   }
-  //
+  ///
   //click đóng thông báo xóa nhân viên sẽ hiển thị thông báo
   //
   btnSaveOnClick() {
