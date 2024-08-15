@@ -32,8 +32,8 @@
 }
 
 .table-header-right button {
-  width: 24px;
-  height: 24px;
+  width: 38px;
+  height: 38px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 16px;
@@ -41,7 +41,7 @@
   border-radius: 4px;
 }
 .table-header-right {
-  width: 80px;
+  width: 120px;
 }
 .table-header-right .btn-export {
   background-image: url(/Front-End/assets/icon/export-excel-50.png);
@@ -53,12 +53,15 @@
 
 .data-table {
   margin: 16px;
+  border-bottom: 1px solid #bbb;
+  border-top: 1px solid #bbb;
 }
 
 .data-table-container {
   overflow-y: auto;
   height: calc(100vh - 320px);
   position: relative;
+  border-bottom: 1px solid #bbb;
 }
 
 .sticky-header th {

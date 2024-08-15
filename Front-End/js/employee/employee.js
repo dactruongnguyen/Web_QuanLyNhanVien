@@ -86,6 +86,7 @@ Nguyễn Đắc Trường
       document
         .querySelector("#btn-refresh")
         .addEventListener("click", this.loadData.bind(this));
+      //Phân trang :
     } catch (error) {
       console.error(error);
     }

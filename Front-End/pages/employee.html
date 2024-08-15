@@ -107,9 +107,9 @@
               <div class="m-paging-center"></div>
               <div class="m-paging-right">
                 <select name="" id="m-select">
-                  <option value="10">Số bản ghi trang 10</option>
-                  <option value="20">Số bản ghi trang 20</option>
-                  <option value="30">Số bản ghi trang 30</option>
+                  <option value="paging10">Số bản ghi trang 10</option>
+                  <option value="paging50">Số bản ghi trang 50</option>
+                  <option value="paging100">Số bản ghi trang 100</option>
                 </select>
                 <button class="m-btn-prev"></button>
                 <button class="m-btn-next"></button>
@@ -208,13 +208,17 @@
         <div class="row row-3">
           <div class="location">
             <label for="vitri">Vị trí</label>
-            <input
-              class="dialog-input"
-              type="text"
+            <select
+              class="dialog-select"
               name="vitri"
               id="vitri"
               style="width: 342px"
-            />
+            >
+              <option value="">Giám đốc</option>
+              <option value="">Nhân viên</option>
+              <option value="">Trưởng phòng</option>
+              <option value="">Trưởng ban kế hoạch</option>
+            </select>
           </div>
           <div class="cmtnd">
             <label for="cmt">Số CMTND<span style="color: red">*</span></label>
@@ -240,13 +244,16 @@
         <div class="row row-4">
           <div class="phongban">
             <label for="phongban">Phòng ban</label>
-            <input
-              class="dialog-input"
-              type="text"
+            <select
+              class="dialog-select"
               name="phongban"
               id="phongban"
               style="width: 342px"
-            />
+            >
+              <option value="">Phòng Kinh Doanh</option>
+              <option value="">Phòng Kế Toán</option>
+              <option value="">Phòng Công nghệ thông tin</option>
+            </select>
           </div>
           <div class="noicap">
             <label for="noicap">Nơi cấp</label>

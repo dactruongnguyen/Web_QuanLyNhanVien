@@ -1,0 +1,43 @@
+﻿using MISA.WenIntern.Core.Const;
+using MISA.WenIntern.Core.EmployeeValidation;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static MISA.WenIntern.Core.MISAEnum.MISAEnum;
+
+namespace MISA.WenIntern.Core.Entities
+{
+    public class Employee
+    {
+        [Required(ErrorMessage = "Id không được phép để trống")]
+        public Guid EmployeeId { get; set; }
+        // [MaxLength(1, ErrorMessage = "Độ dài không được quá 1")]
+        [Required(ErrorMessage = MISAConst.ERROR_EMPLOYEECODE_EMPTY)]
+        public string EmployeeCode { get; set; }
+        [Required(ErrorMessage = "Họ và tên không được phép để trống")]
+        public string FullName { get; set; }
+        [DateGreaterThanToday(ErrorMessage ="Ngày sinh phải lớn hơn ngày hiện tại")]
+        public DateTime? DateOfBirth { get; set; }
+        public Gender Gender { get; set; }
+        public string IdentityNumber { get; set; }
+        public DateTime? IdentityDate { get; set; }
+        public string? IdentityPlace { get; set; }
+
+        [EmailAddress(ErrorMessage = "Email không đúng đính dạng")]
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string? LandlineNumber { get; set; }
+        public string? BankAccount { get; set; }
+        public string? BankName { get; set; }
+        public string? BankBranch { get; set; }
+        public string? Address { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public string? CreatedBy { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public string? ModifiedBy { get; set; }
+       
+    }
+}

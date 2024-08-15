@@ -8,7 +8,9 @@
 .m-table tr,
 td,
 th {
-  border: 1px solid #bbb;
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
+  border-left: 1px solid #bbb;
   height: 48px;
   padding-left: 16px;
   padding-right: 10px;
