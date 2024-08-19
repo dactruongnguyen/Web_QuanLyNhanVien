@@ -7,6 +7,10 @@ class employeePage {
   fromMode = "save";
   employeeIdForUpdate = null;
   employeeIdForDelete = null;
+  currentPage = 1;
+  totalPages = 1;
+  pageSize = 10;
+  totalRecords = 0;
   constructor() {
     this.initEvents();
     this.showLoading();
@@ -87,6 +91,17 @@ Nguyễn Đắc Trường
         .querySelector("#btn-refresh")
         .addEventListener("click", this.loadData.bind(this));
       //Phân trang :
+      document
+        .querySelector(".m-btn-prev")
+        .addEventListener("click", this.prevPage.bind(this));
+
+      document
+        .querySelector(".m-btn-next")
+        .addEventListener("click", this.nextPage.bind(this));
+
+      document
+        .querySelector("#m-select")
+        .addEventListener("change", this.changePageSize.bind(this));
     } catch (error) {
       console.error(error);
     }
@@ -114,18 +129,30 @@ Nguyễn Đắc Trường
   loadData() {
     try {
       this.showLoading();
-      // gọi API lấy dữ liệu
-      fetch("https://cukcuk.manhnv.net/api/v1/Employees").then((res) =>
-        res.json().then((data) => {
+      // Gọi API lấy dữ liệu
+      fetch("https://cukcuk.manhnv.net/api/v1/Employees")
+        .then((res) => res.json())
+        .then((data) => {
+          // Tổng số bản ghi
+          this.totalRecords = data.length;
+
+          // Tính tổng số trang
+          this.totalPages = Math.ceil(this.totalRecords / this.pageSize);
+
+          // Cắt dữ liệu theo trang
+          const startIndex = (this.currentPage - 1) * this.pageSize;
+          const endIndex = this.currentPage * this.pageSize;
+          const paginatedData = data.slice(startIndex, endIndex);
+
           // Lấy ra table
           const table = document.querySelector("#data-table-id");
           const tbody = table.querySelector("tbody");
           tbody.innerHTML = ""; // Xóa dữ liệu cũ trong tbody
-          // Duyệt từng phần tử trong data:
-          let stt = 1;
-          for (const item of data) {
-            //Định dạng dữ liệu
-            //Dữ liệu ngày tháng phải hiển thị là ngày/tháng/năm
+
+          // Duyệt từng phần tử trong paginatedData:
+          let stt = 1 + startIndex;
+          for (const item of paginatedData) {
+            // Định dạng dữ liệu ngày tháng
             let identityDate = item.IdentityDate;
             if (identityDate) {
               identityDate = new Date(identityDate);
@@ -136,6 +163,7 @@ Nguyễn Đắc Trường
               let year = identityDate.getFullYear();
               identityDate = `${date}/${month}/${year}`;
             }
+
             let tr = document.createElement("tr");
             tr.innerHTML = `<tr>
                 <td>${stt}</td>
@@ -153,17 +181,22 @@ Nguyễn Đắc Trường
                 </td>
               </tr>`;
             tr.dataset.entity = JSON.stringify(item);
-            table.querySelector("tbody").append(tr);
+            tbody.append(tr);
             stt++;
           }
+
+          const sum = document.querySelector(".m-paging-left");
+          sum.textContent = "Tổng : " + this.totalRecords;
+
           // Gán sự kiện cho các nút sau khi chúng được thêm vào DOM
-          //1. Gán sự kiện nút close
+          // 1. Gán sự kiện nút close
           const buttonTableClose =
             document.querySelectorAll(".button-close-icon");
           for (const button of buttonTableClose) {
             button.addEventListener("click", this.btnDeleteEmployee.bind(this));
           }
-          //2. Gán sự kiện nút chỉnh sửa
+
+          // 2. Gán sự kiện nút chỉnh sửa
           const buttonTableEdit =
             document.querySelectorAll(".button-edit-icon");
           for (const button of buttonTableEdit) {
@@ -171,9 +204,12 @@ Nguyễn Đắc Trường
               this.btnEditEmployee(event)
             );
           }
+
           this.hideLoading();
         })
-      );
+        .catch((error) => {
+          console.error(error);
+        });
     } catch (error) {
       console.error(error);
     }
@@ -693,5 +729,32 @@ Nguyễn Đắc Trường
     } catch (error) {
       console.error(error);
     }
+  }
+  ///
+  /// Code phân trang
+  ///
+
+  // Chuyển đến trang trước
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.loadData();
+    }
+  }
+
+  // Chuyển đến trang kế tiếp
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.loadData();
+    }
+  }
+
+  // Thay đổi số lượng bản ghi mỗi trang
+  changePageSize(event) {
+    this.pageSize = parseInt(event.target.value, 10); // Chuyển đổi giá trị chọn sang số nguyên
+    this.currentPage = 1; // Reset về trang đầu tiên
+    this.totalPages = Math.ceil(this.totalRecords / this.pageSize); // Cập nhật tổng số trang
+    this.loadData(); // Tải lại dữ liệu với số bản ghi mỗi trang mới
   }
 }
